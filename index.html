@@ -6,169 +6,171 @@
 <title>Dhruvi Kapadia — Senior Software Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf9f6;
-    --bg-alt: #f2f0ea;
-    --ink: #1a1a17;
-    --ink-soft: #4a4843;
-    --ink-faint: #8a877e;
-    --line: #e2dfd6;
-    --accent: #2f5d50;
-    --accent-soft: #d8e3df;
-    --maxw: 880px;
+    --paper: #f5f1e8;
+    --paper-2: #efe9da;
+    --ink: #1c1b18;
+    --ink-soft: #56534b;
+    --ink-faint: #908c80;
+    --line: #d8d1bf;
+    --accent: #d6492f;
+    --accent-2: #2f5d8a;
+    --maxw: 1120px;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
   body {
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 19px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+    font-family:'Outfit', sans-serif;
+    font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  /* blueprint grid texture */
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.5;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+            mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+  }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 40px; position:relative; z-index:2; }
+  @media (max-width:640px){ .wrap{ padding:0 22px; } }
 
   /* Nav */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(250,249,246,0.82);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner {
-    max-width: var(--maxw); margin: 0 auto; padding: 16px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .nav-name {
-    font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px;
-    letter-spacing: -0.01em;
-  }
-  .nav-links { display: flex; gap: 26px; }
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    text-decoration: none; color: var(--ink-soft);
-    letter-spacing: 0.02em; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  @media (max-width: 640px) { .nav-links { gap: 16px; } .nav-links a { font-size: 12px; } }
+  nav { position:fixed; top:0; left:0; right:0; z-index:60; background:rgba(245,241,232,0.78); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav-inner { max-width:var(--maxw); margin:0 auto; padding:16px 40px; display:flex; justify-content:space-between; align-items:center; }
+  .nav-name { font-family:'Instrument Serif',serif; font-size:23px; letter-spacing:0; }
+  .nav-name b { color:var(--accent); font-weight:400; }
+  .nav-links { display:flex; gap:26px; }
+  .nav-links a { font-family:'JetBrains Mono',monospace; font-size:12px; text-decoration:none; color:var(--ink-soft); letter-spacing:0.03em; transition:color .2s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; left:0; bottom:-4px; width:0; height:1.5px; background:var(--accent); transition:width .25s; }
+  .nav-links a:hover { color:var(--ink); } .nav-links a:hover::after { width:100%; }
+  @media (max-width:680px){ .nav-links{ gap:13px; } .nav-links a{ font-size:11px; } .nav-inner{ padding:14px 22px; } }
 
-  /* Hero */
-  header { padding: 110px 0 80px; }
-  .eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 22px;
-    opacity: 0; animation: rise .7s ease forwards .1s;
-  }
-  h1 {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: clamp(40px, 7vw, 68px); line-height: 1.04;
-    letter-spacing: -0.02em; margin-bottom: 26px;
-    opacity: 0; animation: rise .7s ease forwards .22s;
-  }
-  h1 em { font-style: italic; color: var(--accent); }
-  .lede {
-    font-size: clamp(19px, 2.4vw, 23px); color: var(--ink-soft);
-    max-width: 620px; line-height: 1.55;
-    opacity: 0; animation: rise .7s ease forwards .34s;
-  }
-  .hero-links {
-    margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap;
-    opacity: 0; animation: rise .7s ease forwards .46s;
-  }
-  .btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    text-decoration: none; padding: 11px 20px; border-radius: 2px;
-    letter-spacing: 0.02em; transition: all .2s; border: 1px solid var(--ink);
-  }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
-  .btn-ghost { color: var(--ink); }
-  .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+  /* HERO — asymmetric split */
+  header { min-height:100vh; display:flex; align-items:center; padding:130px 0 70px; }
+  .hero-grid { display:grid; grid-template-columns:1.55fr 1fr; gap:60px; align-items:center; width:100%; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } }
+  .tag-row { display:flex; align-items:center; gap:14px; margin-bottom:28px; opacity:0; animation:rise .7s ease forwards .1s; }
+  .tag-dot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(214,73,47,0.18); }
+  .tag-row span { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-soft); letter-spacing:0.08em; text-transform:uppercase; }
+  h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(42px,6.5vw,78px); line-height:1.02; letter-spacing:-0.01em; margin-bottom:30px; }
+  h1 span { display:block; opacity:0; }
+  h1 .a { animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards .2s; }
+  h1 .b { animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards .32s; }
+  h1 .c { animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards .44s; }
+  h1 i { font-style:italic; color:var(--accent); }
+  h1 .amp { color:var(--accent-2); font-style:italic; }
+  .lede { font-size:clamp(17px,2vw,20px); color:var(--ink-soft); max-width:540px; line-height:1.6; opacity:0; animation:rise .9s ease forwards .56s; }
+  .hero-links { margin-top:36px; display:flex; gap:13px; flex-wrap:wrap; opacity:0; animation:rise .9s ease forwards .68s; }
+  .btn { font-family:'JetBrains Mono',monospace; font-size:12.5px; text-decoration:none; padding:13px 24px; letter-spacing:0.03em; transition:all .22s; border:1.5px solid var(--ink); border-radius:2px; }
+  .btn-primary { background:var(--ink); color:var(--paper); }
+  .btn-primary:hover { background:var(--accent); border-color:var(--accent); }
+  .btn-ghost { color:var(--ink); }
+  .btn-ghost:hover { background:var(--ink); color:var(--paper); }
 
-  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  /* spec card on the right */
+  .spec { border:1.5px solid var(--ink); border-radius:4px; background:var(--paper-2); padding:0; opacity:0; animation:rise .9s ease forwards .5s; box-shadow:8px 8px 0 var(--ink); }
+  .spec-top { border-bottom:1.5px solid var(--ink); padding:14px 20px; display:flex; justify-content:space-between; align-items:center; }
+  .spec-top b { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; }
+  .spec-top em { font-style:normal; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); }
+  .spec-row { display:flex; justify-content:space-between; padding:13px 20px; border-bottom:1px solid var(--line); }
+  .spec-row:last-child { border-bottom:none; }
+  .spec-row .k { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:0.05em; text-transform:uppercase; }
+  .spec-row .v { font-family:'Instrument Serif',serif; font-size:19px; }
+  .spec-row .v.acc { color:var(--accent); }
+  @keyframes rise { from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:translateY(0);} }
 
-  /* Section scaffolding */
-  section { padding: 64px 0; border-top: 1px solid var(--line); }
-  .sec-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px;
-    color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase;
-    margin-bottom: 36px; display: flex; align-items: center; gap: 12px;
-  }
-  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  /* marquee */
+  .marquee { border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); background:var(--ink); overflow:hidden; padding:13px 0; }
+  .marquee-track { display:flex; gap:40px; white-space:nowrap; animation:scroll 26s linear infinite; }
+  .marquee-track span { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--paper); letter-spacing:0.04em; }
+  .marquee-track span b { color:var(--accent); }
+  @keyframes scroll { from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
 
-  .prose p { margin-bottom: 18px; color: var(--ink-soft); }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose strong { color: var(--ink); font-weight: 500; }
+  /* Sections */
+  section { padding:104px 0; border-bottom:1px solid var(--line); position:relative; }
+  .sec-head { display:flex; align-items:baseline; gap:16px; margin-bottom:48px; }
+  .sec-num { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); }
+  .sec-title { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(30px,5vw,48px); letter-spacing:-0.01em; }
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
 
-  /* Experience */
-  .job { display: grid; grid-template-columns: 150px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-  .job:last-child { border-bottom: none; }
-  .job-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faint); padding-top: 5px; letter-spacing: 0.01em; }
-  .job-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 3px; }
-  .job-co { font-size: 16px; color: var(--accent); margin-bottom: 14px; }
-  .job ul { list-style: none; }
-  .job li { position: relative; padding-left: 20px; margin-bottom: 9px; font-size: 17px; color: var(--ink-soft); line-height: 1.5; }
-  .job li::before { content: '—'; position: absolute; left: 0; color: var(--ink-faint); }
-  @media (max-width: 640px) { .job { grid-template-columns: 1fr; gap: 8px; } .job-date { padding-top: 0; } }
+  .about-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; gap:34px; } }
+  .about-grid p { color:var(--ink-soft); margin-bottom:18px; font-size:17px; line-height:1.72; }
+  .about-grid p:last-child{ margin-bottom:0; }
+  .about-grid strong { color:var(--ink); font-weight:600; }
+  .about-grid em { color:var(--accent); font-style:normal; font-weight:500; }
+  .facts { border-left:2px solid var(--ink); padding-left:28px; }
+  .fact { margin-bottom:22px; }
+  .fact .k { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+  .fact .v { font-family:'Instrument Serif',serif; font-size:21px; }
+  .fact .v small { color:var(--ink-soft); font-size:14px; font-family:'Outfit',sans-serif; }
 
-  /* Projects */
-  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 640px) { .projects { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--bg-alt); border: 1px solid var(--line);
-    border-radius: 4px; padding: 26px; transition: transform .25s, box-shadow .25s;
-  }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,26,23,0.07); }
-  .card h3 { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.01em; }
-  .card p { font-size: 16px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 16px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    background: var(--accent-soft); color: var(--accent);
-    padding: 3px 9px; border-radius: 2px; letter-spacing: 0.01em;
-  }
-  .metric { color: var(--accent); font-weight: 500; }
+  .job { display:grid; grid-template-columns:160px 1fr; gap:34px; padding:30px 0; border-bottom:1px solid var(--line); transition:padding-left .3s; }
+  .job:hover { padding-left:10px; }
+  .job:last-child{ border-bottom:none; }
+  .job-date { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-faint); padding-top:7px; }
+  .job-title { font-family:'Instrument Serif',serif; font-size:26px; margin-bottom:3px; }
+  .job-co { font-size:13px; color:var(--accent-2); margin-bottom:15px; font-family:'JetBrains Mono',monospace; }
+  .job ul { list-style:none; }
+  .job li { position:relative; padding-left:22px; margin-bottom:9px; font-size:16px; color:var(--ink-soft); line-height:1.55; }
+  .job li::before { content:'\2192'; position:absolute; left:0; color:var(--accent); }
+  @media (max-width:640px){ .job{ grid-template-columns:1fr; gap:9px; } .job-date{ padding-top:0; } }
 
-  /* Skills */
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
-  .skill-group h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-  .skill-group p { font-size: 17px; color: var(--ink-soft); line-height: 1.6; }
+  .projects { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:700px){ .projects{ grid-template-columns:1fr; } }
+  .card { background:var(--paper-2); border:1.5px solid var(--ink); border-radius:4px; padding:28px; transition:transform .25s, box-shadow .25s; position:relative; }
+  .card:hover { transform:translate(-3px,-3px); box-shadow:6px 6px 0 var(--accent); }
+  .card .pn { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:0.08em; margin-bottom:14px; }
+  .card h3 { font-family:'Instrument Serif',serif; font-size:25px; margin-bottom:11px; line-height:1.1; }
+  .card p { font-size:15px; color:var(--ink-soft); line-height:1.55; margin-bottom:18px; }
+  .tags { display:flex; flex-wrap:wrap; gap:7px; }
+  .tag { font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--paper); color:var(--ink-soft); padding:4px 10px; border-radius:2px; border:1px solid var(--line); }
+  .metric { color:var(--accent); font-weight:600; }
 
-  /* Contact */
-  .contact-grid { display: flex; flex-wrap: wrap; gap: 14px; }
-  .contact-grid a {
-    font-family: 'JetBrains Mono', monospace; font-size: 14px;
-    text-decoration: none; color: var(--ink);
-    border: 1px solid var(--line); padding: 12px 18px; border-radius: 3px;
-    transition: all .2s;
-  }
-  .contact-grid a:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-alt); }
+  .skill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:36px 30px; }
+  .skill-group h4 { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:13px; padding-bottom:9px; border-bottom:1.5px solid var(--ink); }
+  .skill-group p { font-size:16.5px; color:var(--ink-soft); line-height:1.7; }
 
-  footer { padding: 40px 0 60px; border-top: 1px solid var(--line); }
-  footer p { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faint); }
+  .edu-item { display:grid; grid-template-columns:120px 1fr; gap:30px; padding:20px 0; border-bottom:1px solid var(--line); }
+  .edu-item:last-child{ border-bottom:none; }
+  .edu-item .yr { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-faint); padding-top:4px; }
+  .edu-item .deg strong { font-family:'Instrument Serif',serif; font-weight:400; display:block; font-size:22px; margin-bottom:3px; }
+  .edu-item .deg span { color:var(--ink-faint); font-size:13px; font-family:'JetBrains Mono',monospace; }
+  .edu-item .deg span a { color:var(--accent-2); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s,color .2s; }
+  .edu-item .deg span a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  @media (max-width:640px){ .edu-item{ grid-template-columns:1fr; gap:5px; } }
 
-  .edu-item { display: grid; grid-template-columns: 150px 1fr; gap: 28px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .edu-item:last-child { border-bottom: none; }
-  .edu-item .yr { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faint); }
-  .edu-item .deg { font-size: 17px; }
-  .edu-item .deg strong { font-family: 'Fraunces', serif; font-weight: 500; display: block; font-size: 19px; margin-bottom: 2px; }
-  .edu-item .deg span { color: var(--ink-faint); font-size: 15px; }
-  @media (max-width: 640px) { .edu-item { grid-template-columns: 1fr; gap: 4px; } }
+  .contact-big { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(30px,5.5vw,58px); line-height:1.1; letter-spacing:-0.01em; margin-bottom:36px; }
+  .contact-big a { color:var(--accent); text-decoration:none; border-bottom:2px solid transparent; transition:border-color .25s; }
+  .contact-big a:hover { border-color:var(--accent); }
+  .contact-grid { display:flex; flex-wrap:wrap; gap:13px; }
+  .contact-grid a { font-family:'JetBrains Mono',monospace; font-size:13px; text-decoration:none; color:var(--ink); border:1.5px solid var(--ink); padding:12px 22px; border-radius:2px; transition:all .22s; }
+  .contact-grid a:hover { background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+
+  footer { padding:44px 0; }
+  footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:0.03em; }
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
-    <span class="nav-name">Dhruvi Kapadia</span>
+    <span class="nav-name">Dhruvi Kapadia<b>.</b></span>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -176,36 +178,65 @@
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">Senior Software Engineer · iBase-t</div>
-    <h1>Building reliable <em>Java</em> systems,<br>extended with <em>applied AI</em>.</h1>
-    <p class="lede">Five-plus years engineering scalable backend platforms for global enterprise products — now designing AI-powered solutions where they deliver measurable impact.</p>
-    <div class="hero-links">
-      <a class="btn btn-primary" href="#contact">Get in touch</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/dhruvi-kapadia-732b8a155/" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="hero-grid">
+      <div>
+        <div class="tag-row"><span class="tag-dot"></span><span>Senior Software Engineer @ iBase-t</span></div>
+        <h1>
+          <span class="a">Merging <i>Java</i> backend</span>
+          <span class="b">with applied AI.</span>
+        </h1>
+        <p class="lede">Senior Software Engineer @ iBase-t &mdash; merging Java backend with applied AI. Certified Scrum Master building scalable, reliable systems for global enterprise products.</p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="#contact">Get in touch &rarr;</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/dhruvi-kapadia-732b8a155/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="spec">
+        <div class="spec-top"><b>Profile</b><em>// 2026</em></div>
+        <div class="spec-row"><span class="k">Role</span><span class="v">Sr. Software Engineer</span></div>
+        <div class="spec-row"><span class="k">Stack</span><span class="v acc">Java &middot; Spring Boot</span></div>
+        <div class="spec-row"><span class="k">Edge</span><span class="v">RAG / LLMs</span></div>
+        <div class="spec-row"><span class="k">Cert</span><span class="v">Scrum Master</span></div>
+        <div class="spec-row"><span class="k">Based</span><span class="v">Ahmedabad, IN</span></div>
+      </div>
     </div>
   </div>
 </header>
 
+<div class="marquee">
+  <div class="marquee-track">
+    <span><b>+</b> Java</span><span><b>+</b> Spring Boot</span><span><b>+</b> Hibernate</span><span><b>+</b> Microservices</span><span><b>+</b> REST APIs</span><span><b>+</b> RAG / LLMs</span><span><b>+</b> Python</span><span><b>+</b> AWS</span><span><b>+</b> Certified Scrum Master</span>
+    <span><b>+</b> Java</span><span><b>+</b> Spring Boot</span><span><b>+</b> Hibernate</span><span><b>+</b> Microservices</span><span><b>+</b> REST APIs</span><span><b>+</b> RAG / LLMs</span><span><b>+</b> Python</span><span><b>+</b> AWS</span><span><b>+</b> Certified Scrum Master</span>
+  </div>
+</div>
+
 <section id="about">
   <div class="wrap">
-    <div class="sec-label">About</div>
-    <div class="prose">
-      <p>I'm a Senior Software Engineer with over five years of experience building scalable Java backend systems for global enterprise products. My core expertise is in <strong>Spring Boot, Hibernate, microservices, and REST API development</strong>, with a strong focus on performance, reliability, and clean architecture.</p>
-      <p>At iBase-t, I design and optimize Java backend services that power enterprise applications, and I've recently extended my work into applied AI — integrating intelligent automation and search where it adds real value. I also mentor junior engineers and contribute to key architecture and technical decisions across our projects.</p>
-      <p>I'm passionate about engineering robust, well-designed systems and continuing to grow at the intersection of software engineering and emerging technologies.</p>
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">About</h2></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a Senior Software Engineer with over five years of experience building <strong>scalable Java backend systems</strong> for global enterprise products. My core expertise is in Spring Boot, Hibernate, microservices, and REST API development &mdash; with a strong focus on performance, reliability, and clean architecture.</p>
+        <p>At iBase-t, I design and optimize Java backend services that power enterprise applications, and I've recently extended my work into <em>applied AI</em> &mdash; integrating intelligent automation and search where it adds real value. I also mentor junior engineers and shape key architecture and technical decisions across our projects.</p>
+        <p>I'm passionate about engineering robust, well-designed systems and growing at the intersection of software engineering and emerging technologies.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">Based in</div><div class="v">Ahmedabad, India</div></div>
+        <div class="fact"><div class="k">Experience</div><div class="v">5+ years <small>backend &amp; AI</small></div></div>
+        <div class="fact"><div class="k">Focus</div><div class="v">Java &middot; Spring Boot <small>&middot; RAG/LLMs</small></div></div>
+        <div class="fact"><div class="k">Certified</div><div class="v">Scrum Master <small>(CSM)</small></div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="work">
   <div class="wrap">
-    <div class="sec-label">Experience</div>
-
-    <div class="job">
-      <div class="job-date">May 2026 — Present</div>
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Experience</h2></div>
+    <div class="job reveal">
+      <div class="job-date">May 2026 &mdash; Present</div>
       <div>
-        <div class="job-title">Senior Software Engineer — COE / AI Engineer</div>
-        <div class="job-co">iBase-t India Software Pvt. Ltd. · Ahmedabad</div>
+        <div class="job-title">Senior Software Engineer &mdash; COE / AI Engineer</div>
+        <div class="job-co">iBase-t India Software Pvt. Ltd. &middot; Ahmedabad</div>
         <ul>
           <li>Leading development of an AI-driven customer data health monitoring platform built on Java/Spring Boot services with a real-time dashboard.</li>
           <li>Integrating AI to monitor data health, flag blocking issues, and generate improvement recommendations.</li>
@@ -213,12 +244,11 @@
         </ul>
       </div>
     </div>
-
-    <div class="job">
-      <div class="job-date">Dec 2024 — Apr 2026</div>
+    <div class="job reveal">
+      <div class="job-date">Dec 2024 &mdash; Apr 2026</div>
       <div>
-        <div class="job-title">Software Engineer — COE / AI Engineer</div>
-        <div class="job-co">iBase-t India Software Pvt. Ltd. · Ahmedabad</div>
+        <div class="job-title">Software Engineer &mdash; COE / AI Engineer</div>
+        <div class="job-co">iBase-t India Software Pvt. Ltd. &middot; Ahmedabad</div>
         <ul>
           <li>Designed backend services for intelligent ticket routing and knowledge retrieval, integrating Java APIs with AI pipelines and reducing ticket resolution time by 30%.</li>
           <li>Built and shipped RAG-powered LLM solutions for enterprise search and automated issue resolution, cutting repetitive manual effort by ~40%.</li>
@@ -226,12 +256,11 @@
         </ul>
       </div>
     </div>
-
-    <div class="job">
-      <div class="job-date">Oct 2019 — Dec 2023</div>
+    <div class="job reveal">
+      <div class="job-date">Oct 2019 &mdash; Dec 2023</div>
       <div>
-        <div class="job-title">Software Engineer — Java Backend Developer</div>
-        <div class="job-co">iBase-t India Software Pvt. Ltd. · Ahmedabad</div>
+        <div class="job-title">Software Engineer &mdash; Java Backend Developer</div>
+        <div class="job-co">iBase-t India Software Pvt. Ltd. &middot; Ahmedabad</div>
         <ul>
           <li>Developed and maintained scalable microservices and REST APIs using Java, Spring Boot, and Hibernate for global enterprise customers (Solumina I-Series &amp; G-Series).</li>
           <li>Tuned SQL queries and optimized large-scale applications, improving reliability and availability; led database migrations.</li>
@@ -244,35 +273,31 @@
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-label">Selected Projects</div>
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">Selected Projects</h2></div>
     <div class="projects">
-      <div class="card">
+      <div class="card reveal">
+        <div class="pn">P/01</div>
         <h3>AI-Driven Data Health Monitoring</h3>
-        <p>A platform that aggregates customer data-health analysis through Java/Spring Boot services and surfaces it on a real-time dashboard, using AI to flag blocking issues automatically.</p>
-        <div class="tags">
-          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Python</span><span class="tag">AI/LLM</span>
-        </div>
+        <p>Aggregates customer data-health analysis through Java/Spring Boot services and surfaces it on a real-time dashboard, using AI to flag blocking issues automatically.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Python</span><span class="tag">AI/LLM</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
+        <div class="pn">P/02</div>
         <h3>RAG-Powered Enterprise Search</h3>
-        <p>RAG and LLM pipelines for enterprise search and automated issue resolution — <span class="metric">reducing manual effort by ~40%</span> across support workflows.</p>
-        <div class="tags">
-          <span class="tag">RAG/LLM</span><span class="tag">FastAPI</span><span class="tag">Elasticsearch</span><span class="tag">Docker</span>
-        </div>
+        <p>RAG and LLM pipelines for enterprise search and automated issue resolution &mdash; <span class="metric">reducing manual effort by ~40%</span> across support workflows.</p>
+        <div class="tags"><span class="tag">RAG/LLM</span><span class="tag">FastAPI</span><span class="tag">Elasticsearch</span><span class="tag">Docker</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
+        <div class="pn">P/03</div>
         <h3>Intelligent Ticket Routing</h3>
-        <p>Backend services for ticket routing, classification, and knowledge retrieval that pair Java APIs with AI pipelines, <span class="metric">cutting resolution time by 30%</span>.</p>
-        <div class="tags">
-          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">NLP</span><span class="tag">AWS</span>
-        </div>
+        <p>Backend services for ticket routing, classification, and knowledge retrieval pairing Java APIs with AI pipelines, <span class="metric">cutting resolution time by 30%</span>.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">NLP</span><span class="tag">AWS</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
+        <div class="pn">P/04</div>
         <h3>Solumina I-Series &amp; G-Series</h3>
-        <p>Scalable microservices and REST APIs for global enterprise manufacturing products, with SQL tuning, database migrations, and performance testing under distributed loads.</p>
-        <div class="tags">
-          <span class="tag">Java</span><span class="tag">Hibernate</span><span class="tag">Microservices</span><span class="tag">JMeter</span>
-        </div>
+        <p>Scalable microservices and REST APIs for global enterprise manufacturing products, with SQL tuning, database migrations, and distributed-load performance testing.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Hibernate</span><span class="tag">Microservices</span><span class="tag">JMeter</span></div>
       </div>
     </div>
   </div>
@@ -280,77 +305,61 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-label">Skills</div>
-    <div class="skill-grid">
-      <div class="skill-group">
-        <h4>Languages</h4>
-        <p>Java · Python · C · C++</p>
-      </div>
-      <div class="skill-group">
-        <h4>Backend</h4>
-        <p>Spring · Spring Boot · Hibernate · REST APIs · Microservices</p>
-      </div>
-      <div class="skill-group">
-        <h4>AI / ML</h4>
-        <p>RAG pipelines · LLMs · NLP · embeddings · classical ML &amp; deep learning</p>
-      </div>
-      <div class="skill-group">
-        <h4>Databases</h4>
-        <p>Oracle · MySQL · SQL Server</p>
-      </div>
-      <div class="skill-group">
-        <h4>Tools &amp; Cloud</h4>
-        <p>Git · Docker · AWS · Jenkins · Elasticsearch · FastAPI · Maven · JMeter</p>
-      </div>
-      <div class="skill-group">
-        <h4>Practices</h4>
-        <p>Agile/Scrum (CSM) · TDD · CI/CD · performance tuning</p>
-      </div>
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">Skills</h2></div>
+    <div class="skill-grid reveal">
+      <div class="skill-group"><h4>Languages</h4><p>Java &middot; Python &middot; C &middot; C++</p></div>
+      <div class="skill-group"><h4>Backend</h4><p>Spring &middot; Spring Boot &middot; Hibernate &middot; REST APIs &middot; Microservices</p></div>
+      <div class="skill-group"><h4>AI / ML</h4><p>RAG pipelines &middot; LLMs &middot; NLP &middot; embeddings &middot; classical ML &amp; deep learning</p></div>
+      <div class="skill-group"><h4>Databases</h4><p>Oracle &middot; MySQL &middot; SQL Server</p></div>
+      <div class="skill-group"><h4>Tools &amp; Cloud</h4><p>Git &middot; Docker &middot; AWS &middot; Jenkins &middot; Elasticsearch &middot; FastAPI &middot; Maven &middot; JMeter</p></div>
+      <div class="skill-group"><h4>Practices</h4><p>Agile/Scrum (CSM) &middot; TDD &middot; CI/CD &middot; performance tuning</p></div>
     </div>
   </div>
 </section>
 
 <section id="education">
   <div class="wrap">
-    <div class="sec-label">Education &amp; Certifications</div>
-    <div class="edu-item">
-      <div class="yr">2024</div>
-      <div class="deg"><strong>Post Graduate Diploma — Artificial Intelligence</strong><span>Durham College, Oshawa, Canada · GPA 9/10</span></div>
-    </div>
-    <div class="edu-item">
-      <div class="yr">2017 — 2019</div>
-      <div class="deg"><strong>M.Sc. IT — Information Technology &amp; Infrastructure Management</strong><span>Ganpat University, Ahmedabad, India · GPA 9/10</span></div>
-    </div>
-    <div class="edu-item">
-      <div class="yr">2014 — 2017</div>
-      <div class="deg"><strong>B.Sc. IT — Information Technology &amp; Computer Application</strong><span>Gujarat University, Ahmedabad, India</span></div>
-    </div>
-    <div class="edu-item">
-      <div class="yr">2024</div>
-      <div class="deg"><strong>Certified Scrum Master (CSM)</strong><span>Scrum Alliance · Credential ID 001685068</span></div>
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">Education &amp; Certifications</h2></div>
+    <div class="reveal">
+      <div class="edu-item"><div class="yr">2024</div><div class="deg"><strong>Post Graduate Diploma &mdash; Artificial Intelligence</strong><span><a href="https://durhamcollege.ca/" target="_blank" rel="noopener">Durham College</a>, Oshawa, Canada &middot; GPA 9/10</span></div></div>
+      <div class="edu-item"><div class="yr">2017&mdash;2019</div><div class="deg"><strong>M.Sc. IT &mdash; Information Technology &amp; Infrastructure Management</strong><span><a href="https://www.ganpatuniversity.ac.in/" target="_blank" rel="noopener">Ganpat University</a>, Ahmedabad &middot; GPA 9/10</span></div></div>
+      <div class="edu-item"><div class="yr">2014&mdash;2017</div><div class="deg"><strong>B.Sc. IT &mdash; Information Technology &amp; Computer Application</strong><span><a href="https://www.gujaratuniversity.ac.in/" target="_blank" rel="noopener">Gujarat University</a>, Ahmedabad</span></div></div>
+      <div class="edu-item"><div class="yr">2024</div><div class="deg"><strong>Certified Scrum Master (CSM)</strong><span><a href="https://www.scrumalliance.org/" target="_blank" rel="noopener">Scrum Alliance</a> &middot; Credential ID 001685068</span></div></div>
     </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="wrap">
-    <div class="sec-label">Get in touch</div>
-    <div class="prose" style="margin-bottom:28px;">
-      <p>Open to connecting with engineers, teams, and opportunities at the intersection of software engineering and applied AI.</p>
-    </div>
-    <div class="contact-grid">
-      <a href="mailto:dhruvis1997@gmail.com">dhruvis1997@gmail.com</a>
-      <a href="https://www.linkedin.com/in/dhruvi-kapadia-732b8a155/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2 class="sec-title">Get in touch</h2></div>
+    <p class="contact-big reveal">Let's build something &mdash; reach me at <a href="mailto:dhruvis1997@gmail.com">dhruvis1997@gmail.com</a></p>
+    <div class="contact-grid reveal">
+      <a href="mailto:dhruvis1997@gmail.com">Email &nearr;</a>
+      <a href="https://www.linkedin.com/in/dhruvi-kapadia-732b8a155/" target="_blank" rel="noopener">LinkedIn &nearr;</a>
+      <a href="#" target="_blank" rel="noopener">GitHub &nearr;</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Dhruvi Kapadia · Ahmedabad, India</p>
+    <p>&copy; 2026 Dhruvi Kapadia</p>
+    <p>Ahmedabad, India &middot; Built with care</p>
   </div>
 </footer>
 
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const sibs = Array.from(e.target.parentElement.querySelectorAll('.reveal'));
+        e.target.style.transitionDelay = (sibs.indexOf(e.target) % 4 * 0.08) + 's';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
